@@ -3,10 +3,11 @@ from constants import red, white, blue, square_size
 from board import Board
 
 
-class Game:
+class Game(Board):
 	def __init__(self, win):
 		self._init()
 		self.win = win
+		# self.red1 = super(red1)
 
 	def update(self):   # Time Complexity: O(m*n). This function checks through each row and column (m and n) and lists out the possible move for each piece on each square.
 		self.board.draw(self.win)
@@ -16,7 +17,7 @@ class Game:
 	def _init(self):    # This function just states the base state of the board
 		self.selected = None
 		self.board = Board()
-		self.turn = red
+		self.turn = red or (255, 255, 0)
 		self.valid_moves = {}
 
 	def winner(self): # Time Complexity: O(1)
@@ -26,6 +27,7 @@ class Game:
 		self._init()
 
 	def select(self, row, col): # Time complexity: O(m*n). This function goes through the rows and columns to determine the available moves of the piece that we selected
+		
 		if self.selected:
 			result = self._move(row, col)
 			if not result:
@@ -33,7 +35,8 @@ class Game:
 				self.select(row, col)
 
 		piece = self.board.get_piece(row, col)
-		if piece != 0 and piece.color == self.turn:
+		# print("s   " +  str(piece))
+		if piece != 0 and piece.color == self.turn or piece.color == (255, 255, 0):
 			self.selected = piece
 			self.valid_moves = self.board.get_valid_moves(piece)
 			return True

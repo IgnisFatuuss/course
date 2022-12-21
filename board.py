@@ -2,6 +2,8 @@ import pygame
 from constants import *
 from piece import Piece
 
+
+
 class Board:
     def __init__(self):
         self.board = [] # use of a multidimensional array of 2 dimensions, where the time complexity of traversing it is an average of O(N*M*...) where N, M, ... is the size of each dimension
@@ -9,6 +11,8 @@ class Board:
         self.red_kings = self.white_kings = 0
         # self.mainRed
         self.create_board()
+        self.white = white
+        
     
     def draw_squares(self, win): #drawing the squares for the checkers board. Avg. runtime of O(n). Worst case: O(n^2).
         #fill window with black
@@ -62,10 +66,13 @@ class Board:
 
                     elif row > 5:
                         if row == 8 and col == 4:
-                            # global red
-                            # red = (255, 255, 0)
-                            self.board[row].append(Piece(row, col, red))
-                            # red = (255, 0, 0)
+                            # import constants
+                            # constants.red = (255, 255, 0)
+                            global red
+                            red = (255, 255, 0)
+                            self.board[row].append(Piece(row, col, (255, 255, 0)))
+                            # constants.red = (255, 0, 0)
+                            red = (255, 0, 0)
                         else:
                             self.board[row].append(Piece(row, col, red))
 
