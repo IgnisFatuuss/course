@@ -56,6 +56,7 @@ class Game(Board):
 
 		return True
 
+
 	def draw_valid_moves(self, moves): # Time Complexity: O(n). This function uses _move() and visualizes the possible squares on the board that a piece can move to.
 		for move in moves:
 			row, col = move
